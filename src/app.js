@@ -7,6 +7,8 @@ const apiRoutes = require('./routes/api.routes')
 
 const PORT = process.env.PORT || 3001
 
+require('./db')
+
 app.use(cors())
 app.use(apiRoutes)
 
