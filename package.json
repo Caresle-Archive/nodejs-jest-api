@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "test": "jest . --silent --detectOpenHandles",
+    "test": "jest . --detectOpenHandles",
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
     "fix": "eslint --fix"

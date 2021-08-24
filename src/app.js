@@ -7,9 +7,10 @@ const apiRoutes = require('./routes/api.routes')
 
 const PORT = process.env.PORT || 3001
 
-// require('./db')
+require('./db')
 
 app.use(cors())
+// app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(apiRoutes)
 

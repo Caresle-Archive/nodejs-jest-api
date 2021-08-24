@@ -3,6 +3,6 @@ const routes = Router()
 
 const { getAllNotes } = require('../controllers/api.controller')
 
-routes.get('/', getAllNotes)
+routes.get('/api/v1', getAllNotes)
 
 module.exports = routes
