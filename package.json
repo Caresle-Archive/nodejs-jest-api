@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "jest . --silent --detectOpenHandles",
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
     "fix": "eslint --fix"
@@ -21,6 +21,7 @@
   "devDependencies": {
     "eslint": "^7.32.0",
     "jest": "^27.0.6",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "supertest": "^6.1.6"
   }
 }
