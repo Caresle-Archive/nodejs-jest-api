@@ -5,6 +5,12 @@ const getAllNotes = async (req, res) => {
 	res.json(response)
 }
 
+const getNoteById = async (req, res) => {
+	const response = await Note.findById(req.params.id)
+	res.json(response)
+}
+
 module.exports = {
-	getAllNotes
+	getAllNotes,
+	getNoteById
 }

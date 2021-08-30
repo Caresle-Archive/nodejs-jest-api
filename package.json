@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest --verbose --silent --detectOpenHandles",
+    "test": "jest --verbose --silent",
     "start": "node src/app.js",
     "dev": "nodemon src/app.js"
   },
