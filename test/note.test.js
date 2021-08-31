@@ -56,6 +56,45 @@ describe('POST', () => {
 			.expect('Content-Type', /application\/json/)
 			.expect(201)
 	})
+
+	test('Invalid name to note', async () => {
+		await api
+			.post('/api/v1')
+			.send({
+				name: null,
+				completed: false
+			})
+			.set('Accept', 'application/json')
+			.expect(400)
+	})
+
+	test('Note without name', async () => {
+		await api
+			.post('/api/v1')
+			.send({
+				completed: false
+			})
+			.set('Accept', 'application/json')
+			.expect(400)
+	})
+
+	test('Valid name but no completed element', async () => {
+		await api
+			.post('/api/v1')
+			.send({
+				name: 'Note without completed'
+			})
+			.set('Accept', 'application/json')
+			.expect(400)
+	})
+
+	test('Empty object', async () => {
+		await api
+			.post('/api/v1')
+			.send({})
+			.set('Accept', 'application/json')
+			.expect(400)
+	})
 })
 
 afterAll(async () => {

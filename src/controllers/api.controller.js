@@ -23,9 +23,26 @@ const getNoteById = async (req, res, next) => {
 	res.status(302).json(response)
 }
 
-const createNote = async (req, res) => {
-	const { name, completed } = req.body
+// Check if the given value is any of empty string
+// null o undefined value
+// Return true if is correct
+const isCorrect = val => {
+	if (val === '' || val === null || val === undefined) {
+		return true
+	}
+}
 
+const createNote = async (req, res, next) => {
+	const { name, completed } = req.body
+	if (isCorrect(name)) {
+		res.status(400).end()
+		return next()
+	}
+
+	if (isCorrect(completed)) {
+		res.status(400).end()
+		return next()
+	}
 	const response = await Note.create({
 		name: name,
 		completed: completed
