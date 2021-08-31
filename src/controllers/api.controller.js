@@ -50,8 +50,18 @@ const createNote = async (req, res, next) => {
 	res.status(201).json(response)
 }
 
+const deleteNote = async (req, res) => {
+	const { id } = req.params
+	const response = await Note.findOneAndDelete({ id: id })
+	if (response) {
+		res.status(204).end()
+	}
+	
+}
+
 module.exports = {
 	getAllNotes,
 	getNoteById,
-	createNote
+	createNote,
+	deleteNote
 }

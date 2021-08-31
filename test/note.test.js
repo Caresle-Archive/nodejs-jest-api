@@ -97,6 +97,22 @@ describe('POST', () => {
 	})
 })
 
+describe('DELETE', () => {
+	test('Element by id', async () => {
+		const data = await getNotes()
+		const id = data[0].id
+		await api
+			.delete(`/api/v1/${id}`)
+			.expect(204)
+	})
+
+	test('Bad id pass', async () => {
+		await api
+			.delete('/api/v1/1v2v3')
+			.expect(404)
+	})
+})
+
 afterAll(async () => {
 	const client = mongoose.connection.getClient()
 	await client.close()
