@@ -1,3 +1,5 @@
+const Note = require('../../src/models/note')
+
 const notes = [
 	{
 		name: 'Note 1',
@@ -13,4 +15,9 @@ const notes = [
 	}
 ]
 
-module.exports = { notes }
+const getNotes =  async () => {
+	const data = await Note.find({})
+	return data
+}
+
+module.exports = { notes, getNotes }

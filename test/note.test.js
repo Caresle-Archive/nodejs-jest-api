@@ -8,7 +8,7 @@ const Note = require('../src/models/note')
 const api = supertest(app)
 
 // helpers
-const { notes } = require('./helpers/helper')
+const { notes, getNotes } = require('./helpers/helper')
 
 beforeEach(async () => {
 	await Note.deleteMany({})
@@ -26,13 +26,21 @@ describe('GET', () => {
 	})
 
 	test('By id', async () => {
-		const response = await api.get('/api/v1/612d6487cef08f20712cabae')
+		const data = await getNotes()
+		const id = data[0].id
+		const response = await api.get(`/api/v1/${id}`)
 		expect(response.status).toBe(302)
 	})
 
-	test('Not found by id', async () => {
+	test('Bad id', async () => {
 		const response = await api.get('/api/v1/aav')
 		expect(response.status).toBe(400)
+	})
+
+	test('Not found by id', async () => {
+		await api
+			.get('/api/v1/612d6487cef08f20712caba0')
+			.expect(404)
 	})
 })
 
