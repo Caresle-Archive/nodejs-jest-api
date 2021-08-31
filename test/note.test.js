@@ -44,7 +44,19 @@ describe('GET', () => {
 	})
 })
 
-
+describe('POST', () => {
+	test('A valid note', async () => {
+		await api
+			.post('/api/v1')
+			.send({
+				name: 'Note post',
+				completed: false
+			})
+			.set('Accept', 'application/json')
+			.expect('Content-Type', /application\/json/)
+			.expect(201)
+	})
+})
 
 afterAll(async () => {
 	const client = mongoose.connection.getClient()

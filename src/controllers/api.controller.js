@@ -23,7 +23,18 @@ const getNoteById = async (req, res, next) => {
 	res.status(302).json(response)
 }
 
+const createNote = async (req, res) => {
+	const { name, completed } = req.body
+
+	const response = await Note.create({
+		name: name,
+		completed: completed
+	})
+	res.status(201).json(response)
+}
+
 module.exports = {
 	getAllNotes,
-	getNoteById
+	getNoteById,
+	createNote
 }

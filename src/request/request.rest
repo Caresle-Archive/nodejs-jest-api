@@ -8,3 +8,12 @@ GET http://localhost:3000/api/v1/aav
 
 ###
 GET http://localhost:3000/api/v1/612d6487cef08f20712caba1
+
+###
+POST http://localhost:3000/api/v1/
+content-type: application/json
+
+{
+	"name": "Note 22",
+	"completed": false
+}
