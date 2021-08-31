@@ -109,7 +109,7 @@ describe('DELETE', () => {
 	test('Bad id pass', async () => {
 		await api
 			.delete('/api/v1/1v2v3')
-			.expect(404)
+			.expect(400)
 	})
 })
 

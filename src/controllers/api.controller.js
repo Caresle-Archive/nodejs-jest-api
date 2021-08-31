@@ -1,4 +1,25 @@
 const Note = require('../models/note')
+const ObjectId = require('mongoose').Types.ObjectId
+
+
+// Check if the given value is any of empty string
+// null o undefined value
+// Return true if is correct
+const isCorrect = val => {
+	if (val === '' || val === null || val === undefined) {
+		return true
+	}
+}
+
+const validId = id => {
+	if (ObjectId.isValid(id)) {
+		if (String(new ObjectId(id)) === id) {
+			return true
+		} else {
+			return false
+		}
+	}
+}
 
 const getAllNotes = async (req, res) => {
 	const response = await Note.find()
@@ -23,15 +44,6 @@ const getNoteById = async (req, res, next) => {
 	res.status(302).json(response)
 }
 
-// Check if the given value is any of empty string
-// null o undefined value
-// Return true if is correct
-const isCorrect = val => {
-	if (val === '' || val === null || val === undefined) {
-		return true
-	}
-}
-
 const createNote = async (req, res, next) => {
 	const { name, completed } = req.body
 	if (isCorrect(name)) {
@@ -52,11 +64,16 @@ const createNote = async (req, res, next) => {
 
 const deleteNote = async (req, res) => {
 	const { id } = req.params
-	const response = await Note.findOneAndDelete({ id: id })
-	if (response) {
-		res.status(204).end()
+	if (validId(id)) {
+		const response = await Note.findOneAndDelete({ id: id })
+		console.log(response)
+		if (response) {
+			res.status(204).end()
+		} else {
+			res.status(404).end()
+		}
 	}
-	
+	res.status(400).end()
 }
 
 module.exports = {

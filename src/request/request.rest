@@ -17,3 +17,12 @@ content-type: application/json
 	"name": "Note 22",
 	"completed": false
 }
+
+###
+DELETE http://localhost:3000/api/v1/612e3cf87eb07c92b74e112e
+
+###
+DELETE http://localhost:3000/api/v1/537eed02ed345b2e039652d2
+
+###
+DELETE http://localhost:3000/api/v1/1v1v1v
