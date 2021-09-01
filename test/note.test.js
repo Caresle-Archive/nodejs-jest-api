@@ -152,6 +152,13 @@ describe('PUT', () => {
 			.send({})
 			.expect(204)
 	})
+
+	test('No id', async () => {
+		await api
+			.put('/api/v1/')
+			.send({})
+			.expect(404)
+	})
 })
 
 afterAll(async () => {
