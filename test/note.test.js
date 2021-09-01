@@ -111,6 +111,47 @@ describe('DELETE', () => {
 			.delete('/api/v1/1v2v3')
 			.expect(400)
 	})
+
+	test('No id pass', async () => {
+		await api
+			.delete('/api/v1/')
+			.expect(404)
+	})
+})
+
+describe('PUT', () => {
+	test('Update name', async () => {
+		const data = await getNotes()
+		const id = data[0].id
+		await api
+			.put(`/api/v1/${id}`)
+			.send({
+				name: 'Note update'
+			})
+			.expect('Content-Type', /application\/json/)
+			.expect(200)
+	})
+
+	test('Update completed', async () => {
+		const data = await getNotes()
+		const id = data[0].id
+		await api
+			.put(`/api/v1/${id}`)
+			.send({
+				completed: true
+			})
+			.expect('Content-Type', /application\/json/)
+			.expect(200)
+	})
+
+	test('Empty object', async () => {
+		const data = await getNotes()
+		const id = data[0].id
+		await api
+			.put(`/api/v1/${id}`)
+			.send({})
+			.expect(204)
+	})
 })
 
 afterAll(async () => {

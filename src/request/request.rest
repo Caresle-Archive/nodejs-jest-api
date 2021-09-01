@@ -11,13 +11,27 @@ GET http://localhost:3000/api/v1/612d6487cef08f20712caba1
 
 ###
 POST http://localhost:3000/api/v1/
-content-type: application/json
+Content-Type: application/json
 
 {
 	"name": "Note 22",
 	"completed": false
 }
 
+###
+PUT http://localhost:3000/api/v1/612f7bc8512851985d30af0d
+Content-Type: application/json
+
+{
+	"name": "Note 47",
+	"completed": false
+}
+
+###
+PUT http://localhost:3000/api/v1/612f7bc8512851985d30af0d
+Content-Type: application/json
+
+{}
 ###
 DELETE http://localhost:3000/api/v1/612e3cf87eb07c92b74e112e
 
@@ -26,3 +40,6 @@ DELETE http://localhost:3000/api/v1/537eed02ed345b2e039652d2
 
 ###
 DELETE http://localhost:3000/api/v1/1v1v1v
+
+###
+DELETE http://localhost:3000/api/v1/

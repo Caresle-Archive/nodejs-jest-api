@@ -64,6 +64,7 @@ const createNote = async (req, res, next) => {
 
 const deleteNote = async (req, res) => {
 	const { id } = req.params
+
 	if (validId(id)) {
 		const response = await Note.findOneAndDelete({ id: id })
 		console.log(response)
@@ -76,9 +77,28 @@ const deleteNote = async (req, res) => {
 	res.status(400).end()
 }
 
+const updateNote = async (req, res) => {
+	const id = req.params.id
+	const { name, completed } = req.body
+	let newObject = {}
+	if (!isCorrect(name)) {
+		newObject.name = name
+	}
+	if (!isCorrect(completed)) {
+		newObject.completed = completed
+	}
+	if (Object.entries(newObject).length > 0) {
+		const response = await Note.findOneAndUpdate({id: id}, newObject, { new: true })
+		res.status(200).json(response).end()
+	} else {
+		res.status(204).end()
+	}
+}
+
 module.exports = {
 	getAllNotes,
 	getNoteById,
 	createNote,
-	deleteNote
+	deleteNote,
+	updateNote
 }
